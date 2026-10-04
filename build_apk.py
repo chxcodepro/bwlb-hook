@@ -101,7 +101,10 @@ def build(work, bt, platform, jdk, zig):
              '-storepass:env', 'ANDROID_KEYSTORE_PASSWORD', '-keypass:env', 'ANDROID_KEY_PASSWORD',
              '-keyalg', 'RSA', '-keysize', '2048', '-validity', '10000', '-dname', 'CN=Carrot Suite'])
     dist = ROOT / 'dist'; dist.mkdir(exist_ok=True)
-    output = dist / '保卫萝卜合集.apk'
+    filename = os.environ.get('ANDROID_APK_NAME', '保卫萝卜合集.apk')
+    if Path(filename).name != filename or not filename.endswith('.apk'):
+        raise RuntimeError('ANDROID_APK_NAME must be an APK filename')
+    output = dist / filename
     signer = [jdk / executable('java'), '-jar', bt / 'lib/apksigner.jar']
     run(signer + ['sign', '--ks', key, '--ks-key-alias', alias, '--ks-pass', 'env:ANDROID_KEYSTORE_PASSWORD',
                   '--key-pass', 'env:ANDROID_KEY_PASSWORD', '--out', output, output_dir / 'aligned.apk'])

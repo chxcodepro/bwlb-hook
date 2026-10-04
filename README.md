@@ -27,7 +27,7 @@
 
 需要 Android 11 或更高版本、ARM64 设备，以及已安装并正常工作的 LSPosed 环境。游戏需单独安装。
 
-1. 从 [Releases](https://github.com/chxcodepro/bwlb-hook/releases/latest) 下载并安装 `保卫萝卜合集.apk`。
+1. 从 [Releases](https://github.com/chxcodepro/bwlb-hook/releases/latest) 下载并安装 `bwlb-hook.apk`。
 2. 在 LSPosed 中启用合集，勾选对应游戏作用域；关闭原有单代模块，避免重复 Hook。
 3. 重新启动游戏，打开合集并选择游戏。
 4. 点击“运行”，首次使用时允许显示悬浮窗。
@@ -88,6 +88,7 @@ dist/保卫萝卜合集.apk.sha256
 | `ANDROID_KEY_ALIAS` | 密钥别名，默认 `suite` |
 | `ANDROID_KEY_PASSWORD` | 密钥密码，本地默认 `android` |
 | `ANDROID_REQUIRE_RELEASE_KEY` | 设置为 `true` 时强制使用已有签名及显式密码 |
+| `ANDROID_APK_NAME` | 可选输出文件名；CI 使用 `bwlb-hook.apk` |
 
 ## GitHub Actions 与发布
 
@@ -109,12 +110,14 @@ dist/保卫萝卜合集.apk.sha256
 
 Release 使用同一份签名密钥；密钥不会提交进仓库或上传为 artifact。Fork 时需自行配置 Secrets。
 
+Release 附件统一为 `bwlb-hook.apk` 和 `bwlb-hook.apk.sha256`。Linux / macOS 可在下载目录运行 `shasum -a 256 -c bwlb-hook.apk.sha256` 校验。
+
 发布新版本：同步修改 `VERSION`、Manifest 中的 `versionName` / `versionCode` 和 `CHANGELOG.md`，提交后推送对应标签：
 
 ```sh
 git push origin main
-git tag -a v1.0.1 -m "Release v1.0.1"
-git push origin v1.0.1
+git tag -a v1.0.2 -m "Release v1.0.2"
+git push origin v1.0.2
 ```
 
 标签必须与 `VERSION` 和 Manifest 版本一致，且更新日志须包含该版本。发布失败时可以重新运行对应 Actions workflow。

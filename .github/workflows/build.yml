@@ -54,6 +54,7 @@ jobs:
           PY
       - name: Build signed APK
         env:
+          ANDROID_APK_NAME: bwlb-hook.apk
           ANDROID_KEYSTORE_PASSWORD: ${{ github.event_name != 'pull_request' && secrets.ANDROID_KEYSTORE_PASSWORD || 'android' }}
           ANDROID_KEY_PASSWORD: ${{ github.event_name != 'pull_request' && secrets.ANDROID_KEY_PASSWORD || 'android' }}
           ANDROID_KEY_ALIAS: ${{ github.event_name != 'pull_request' && secrets.ANDROID_KEY_ALIAS || 'suite' }}
