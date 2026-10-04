@@ -1,0 +1,5 @@
+com.lcs.coinlock.CoinHook
+com.lcs.coinlock.AdHook
+io.github.carrot.coinlock.GameModule
+io.github.carrot3.coinlock.GameModule
+io.github.carrot4.coinlock.GameModule

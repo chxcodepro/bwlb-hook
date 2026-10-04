@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="io.github.carrot.suite" android:versionCode="1" android:versionName="1.0.0">
+    <uses-sdk android:minSdkVersion="30" android:targetSdkVersion="34" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <queries>
+        <package android:name="com.carrot.carrotfantasy" /><package android:name="com.carrot.iceworld" />
+        <package android:name="com.feiyu.carrot3" /><package android:name="com.feiyu.carrot3.nearme.gamecenter" />
+        <package android:name="com.feiyu.luobo4" /><package android:name="com.feiyu.luobo4.nearme.gamecenter" />
+    </queries>
+    <application android:label="保卫萝卜合集" android:icon="@drawable/ic_carrot" android:theme="@android:style/Theme.Material.Light.NoActionBar" android:allowBackup="false" android:extractNativeLibs="true" android:supportsRtl="true">
+        <activity android:name=".MainActivity" android:exported="true">
+            <intent-filter><action android:name="android.intent.action.MAIN" /><category android:name="android.intent.category.LAUNCHER" /></intent-filter>
+        </activity>
+        <service android:name=".FloatingService" android:exported="false" android:foregroundServiceType="specialUse">
+            <property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE" android:value="User-started floating game controls" />
+        </service>
+        <provider android:name=".BridgeProvider" android:authorities="io.github.carrot.suite.bridge" android:exported="true" />
+        <meta-data android:name="xposedmodule" android:value="true" />
+        <meta-data android:name="xposedminversion" android:value="93" />
+        <meta-data android:name="xposeddescription" android:value="保卫萝卜 1–4 · 悬浮控制" />
+        <meta-data android:name="xposedscope" android:resource="@array/xposed_scope" />
+    </application>
+</manifest>

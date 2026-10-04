@@ -1,0 +1,5 @@
+<resources><string-array name="xposed_scope">
+    <item>com.carrot.carrotfantasy</item><item>com.carrot.iceworld</item>
+    <item>com.feiyu.carrot3</item><item>com.feiyu.carrot3.nearme.gamecenter</item>
+    <item>com.feiyu.luobo4</item><item>com.feiyu.luobo4.nearme.gamecenter</item>
+</string-array></resources>

@@ -1,0 +1,8 @@
+.signing/
+__pycache__/
+dist/
+artifacts/
+.agents/
+*.keystore
+*.jks
+.env
